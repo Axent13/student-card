@@ -69,10 +69,14 @@ const CardEditor = ({ name, surname, yearOfBirth, portfolioUrl }) => {
     const isValid = validate();
     if (!isValid) return;
     console.log(data);
+    localStorage.setItem("name", data.name);
+    localStorage.setItem("surname", data.surname);
+    localStorage.setItem("yearOfBirth", data.yearOfBirth);
+    localStorage.setItem("portfolioUrl", data.portfolioUrl);
   };
 
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <h1>{name ? "Редактировать" : "Создать"}</h1>
       <TextField
         label="Имя"
@@ -103,15 +107,10 @@ const CardEditor = ({ name, surname, yearOfBirth, portfolioUrl }) => {
         onChange={handleChange}
         error={errors.portfolioUrl}
       />
-      <button
-        type="submit"
-        disabled={!isValid}
-        className="btn btn-primary"
-        onSubmit={handleSubmit}
-      >
+      <button type="submit" disabled={!isValid} className="btn btn-primary">
         {name ? "Редактировать" : "Создать"}
       </button>
-    </>
+    </form>
   );
 };
 
