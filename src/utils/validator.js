@@ -6,8 +6,12 @@ export function validator(data, config) {
       case "isRequired":
         statusValidate = data.trim() === "";
         break;
-      case "min":
-        statusValidate = data.length < config.value;
+      case "isInRange":
+        statusValidate = data < config.min || data > config.max;
+        break;
+      case "isUrl":
+        const urlRegExp = /^https?:\/\/(www\.)?\w+\..+/g;
+        statusValidate = !urlRegExp.test(data);
         break;
       default:
         break;

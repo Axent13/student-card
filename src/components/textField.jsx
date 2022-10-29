@@ -11,7 +11,7 @@ const TextField = ({ label, type, name, value, onChange, error }) => {
       <label htmlFor={name}>{label}</label>
       <div className="input-group has-validation">
         <input
-          type="text"
+          type={type}
           id={name}
           name={name}
           value={value}
