@@ -7,12 +7,12 @@ const StudentCard = ({ name, surname, yearOfBirth, portfolioUrl }) => {
       {name ? (
         <>
           <p>
-            <span className="font-weight-bold">Имя: </span>
+            <strong>Имя: </strong>
             {name}
           </p>
           {surname ? (
             <p>
-              <span className="font-weight-bold">Фамилия: </span>
+              <strong>Фамилия: </strong>
               {surname}
             </p>
           ) : (
@@ -20,7 +20,7 @@ const StudentCard = ({ name, surname, yearOfBirth, portfolioUrl }) => {
           )}
           {yearOfBirth ? (
             <p>
-              <span className="font-weight-bold">Год рождения: </span>
+              <strong>Год рождения: </strong>
               {yearOfBirth}
             </p>
           ) : (
@@ -28,7 +28,7 @@ const StudentCard = ({ name, surname, yearOfBirth, portfolioUrl }) => {
           )}
           {portfolioUrl ? (
             <p>
-              <span className="font-weight-bold">Портфолио: </span>
+              <strong>Портфолио: </strong>
               <a href={portfolioUrl} target="_blank" rel="noopener noreferrer">
                 {portfolioUrl}
               </a>

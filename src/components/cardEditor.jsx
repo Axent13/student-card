@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import TextField from "./textField";
 import { validator } from "../utils/validator";
+import Modal from "./modal";
+import { Link } from "react-router-dom";
 
 const CardEditor = ({ name, surname, yearOfBirth, portfolioUrl }) => {
   const [data, setData] = useState({
@@ -12,6 +14,8 @@ const CardEditor = ({ name, surname, yearOfBirth, portfolioUrl }) => {
   });
 
   const [errors, setErrors] = useState({});
+
+  const [isModalVisible, setModalVisibility] = useState(false);
 
   const handleChange = ({ target }) => {
     setData((prevState) => ({
@@ -69,10 +73,15 @@ const CardEditor = ({ name, surname, yearOfBirth, portfolioUrl }) => {
     const isValid = validate();
     if (!isValid) return;
     console.log(data);
+
     localStorage.setItem("name", data.name);
     localStorage.setItem("surname", data.surname);
     localStorage.setItem("yearOfBirth", data.yearOfBirth);
     localStorage.setItem("portfolioUrl", data.portfolioUrl);
+  };
+
+  const handleClick = () => {
+    setModalVisibility(true);
   };
 
   return (
@@ -107,9 +116,20 @@ const CardEditor = ({ name, surname, yearOfBirth, portfolioUrl }) => {
         onChange={handleChange}
         error={errors.portfolioUrl}
       />
-      <button type="submit" disabled={!isValid} className="btn btn-primary">
+      <Link to="/">
+        <button type="button" className="btn btn-secondary me-3">
+          Назад
+        </button>
+      </Link>
+      <button
+        type="submit"
+        disabled={!isValid}
+        className="btn btn-primary"
+        onClick={handleClick}
+      >
         {name ? "Редактировать" : "Создать"}
       </button>
+      <Modal isVisible={isModalVisible} />
     </form>
   );
 };
